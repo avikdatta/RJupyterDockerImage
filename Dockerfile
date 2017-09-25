@@ -11,8 +11,6 @@ WORKDIR /root/
 
 RUN apt-get -y update &&   \
     apt-get install -y     \
-    littler                \
-    r-cran-littler         \
     r-base                 \
     r-base-dev             \
     r-recommended          \
