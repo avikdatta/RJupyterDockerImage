@@ -43,18 +43,18 @@ ENV R_LIBS_USER /home/$NB_USER/rlib
 
 RUN mkdir -p /home/$NB_USER/rlib
 
-RUN echo "install.packages(c('ggplot2','arm','glmnet','igraph','lme4','lubridate','RCurl'))" > /home/$NB_USER/install.R \
-    && R CMD BATCH --no-save /home/$NB_USER/install.R
+RUN echo "install.packages(c('ggplot2','arm','glmnet','igraph','lme4','lubridate','RCurl'))" >> /home/$NB_USER/install.R 
+#RUN R CMD BATCH --no-save /home/$NB_USER/install.R
     
-RUN echo "install.packages(c('rshape','RJSONIO','XML','tm'))" > /home/$NB_USER/install.R \
-    && R CMD BATCH --no-save /home/$NB_USER/install.R
+RUN echo "install.packages(c('rshape','RJSONIO','XML','tm'))" >> /home/$NB_USER/install.R 
+#RUN R CMD BATCH --no-save /home/$NB_USER/install.R
     
-RUN echo "install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'))" > /home/$NB_USER/install.R \
+RUN echo "install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'))" >> /home/$NB_USER/install.R \
     && echo "devtools::install_github('IRkernel/IRkernel')" >> /home/$NB_USER/install.R  \
     && echo "IRkernel::installspec()" >> /home/$NB_USER/install.R  
 
-RUN R CMD BATCH --no-save /home/$NB_USER/install.R
+#RUN R CMD BATCH --no-save /home/$NB_USER/install.R
 
-RUN rm -rf /home/$NB_USER/install.R*
+#RUN rm -rf /home/$NB_USER/install.R*
 
 CMD ['jupyter-notebook', '--ip=0.0.0.0']
