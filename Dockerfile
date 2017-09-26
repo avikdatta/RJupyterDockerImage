@@ -41,18 +41,22 @@ ENV R_LIBS_USER /home/$NB_USER/rlib
 
 RUN mkdir -p /home/$NB_USER/rlib
 
-RUN echo "install.packages(c('ggplot2','arm','glmnet','igraph','lme4','lubridate','RCurl'),repos='http://cran.us.r-project.org/')" > /home/$NB_USER/install.R 
-RUN R CMD BATCH --no-save /home/$NB_USER/install.R
+#RUN echo "install.packages(c('ggplot2','arm','glmnet','igraph','lme4','lubridate','RCurl'),repos='http://cran.us.r-project.org/')" > /home/$NB_USER/install.R 
+#RUN R CMD BATCH --no-save /home/$NB_USER/install.R
     
-RUN echo "install.packages(c('rshape','RJSONIO','XML','tm'),repos='http://cran.us.r-project.org/')" > /home/$NB_USER/install.R 
-RUN R CMD BATCH --no-save /home/$NB_USER/install.R
+#RUN echo "install.packages(c('rshape','RJSONIO','XML','tm'),repos='http://cran.us.r-project.org/')" > /home/$NB_USER/install.R 
+#RUN R CMD BATCH --no-save /home/$NB_USER/install.R
     
-RUN echo "install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'),repos='http://cran.us.r-project.org/')" >> /home/$NB_USER/install.R \
+#RUN echo "install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'),repos='http://cran.us.r-project.org/')" >> /home/$NB_USER/install.R \
+#    && echo "devtools::install_github('IRkernel/IRkernel')" >> /home/$NB_USER/install.R  \
+#    && echo "IRkernel::installspec()" >> /home/$NB_USER/install.R  
+
+RUN echo "install.packages(c('IRdisplay', 'devtools'),repos='http://cran.us.r-project.org/')" > /home/$NB_USER/install.R \
     && echo "devtools::install_github('IRkernel/IRkernel')" >> /home/$NB_USER/install.R  \
     && echo "IRkernel::installspec()" >> /home/$NB_USER/install.R  
 
 RUN R CMD BATCH --no-save /home/$NB_USER/install.R
 
-RUN rm -rf /home/$NB_USER/install.R*
+RUN rm -f /home/$NB_USER/install.R*
 
 CMD ['jupyter-notebook', '--ip=0.0.0.0']
