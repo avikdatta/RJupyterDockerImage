@@ -41,15 +41,26 @@ ENV R_LIBS_USER /home/$NB_USER/rlib
 
 RUN mkdir -p /home/$NB_USER/rlib
 
-#RUN echo "install.packages(c('ggplot2','arm','glmnet','igraph','lme4','lubridate','RCurl'),repos='http://cran.us.r-project.org/')" > /home/$NB_USER/install.R 
-#RUN R CMD BATCH --no-save /home/$NB_USER/install.R
-    
-#RUN echo "install.packages(c('rshape','RJSONIO','XML','tm'),repos='http://cran.us.r-project.org/')" > /home/$NB_USER/install.R 
-#RUN R CMD BATCH --no-save /home/$NB_USER/install.R
-    
-#RUN echo "install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'),repos='http://cran.us.r-project.org/')" >> /home/$NB_USER/install.R \
-#    && echo "devtools::install_github('IRkernel/IRkernel')" >> /home/$NB_USER/install.R  \
-#    && echo "IRkernel::installspec()" >> /home/$NB_USER/install.R  
+RUN echo "install.packages(c('RCurl','ggplot2'),repos='http://cran.us.r-project.org/')" > /home/$NB_USER/install.R 
+RUN R CMD BATCH --no-save /home/$NB_USER/install.R
+
+RUN echo "install.packages(c('igraph','lme4'),repos='http://cran.us.r-project.org/')" > /home/$NB_USER/install.R 
+RUN R CMD BATCH --no-save /home/$NB_USER/install.R
+
+RUN echo "install.packages(c('lubridate','rshape'),repos='http://cran.us.r-project.org/')" > /home/$NB_USER/install.R 
+RUN R CMD BATCH --no-save /home/$NB_USER/install.R
+
+RUN echo "install.packages(c('RJSONIO','XML'),repos='http://cran.us.r-project.org/')" > /home/$NB_USER/install.R 
+RUN R CMD BATCH --no-save /home/$NB_USER/install.R
+
+RUN echo "install.packages(c('tm','repr'),repos='http://cran.us.r-project.org/')" > /home/$NB_USER/install.R 
+RUN R CMD BATCH --no-save /home/$NB_USER/install.R
+
+RUN echo "install.packages(c(),repos='http://cran.us.r-project.org/')" > /home/$NB_USER/install.R 
+RUN R CMD BATCH --no-save /home/$NB_USER/install.R
+
+RUN echo "install.packages(c(),repos='http://cran.us.r-project.org/')" > /home/$NB_USER/install.R 
+RUN R CMD BATCH --no-save /home/$NB_USER/install.R
 
 RUN echo "install.packages(c('IRdisplay', 'devtools'),repos='http://cran.us.r-project.org/')" > /home/$NB_USER/install.R \
     && echo "devtools::install_github('IRkernel/IRkernel')" >> /home/$NB_USER/install.R  \
