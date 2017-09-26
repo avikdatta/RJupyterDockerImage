@@ -31,11 +31,8 @@ ENV R_LIBS_USER /home/$NB_USER/rlib
 
 RUN mkdir -p /home/$NB_USER/rlib
 
-RUN echo "install.packages(c('RCurl','ggplot2','XML','tm'),repos='http://cran.us.r-project.org/')" > /home/$NB_USER/install.R \
-    && R CMD BATCH --no-save /home/$NB_USER/install.R
-
-#RUN echo "install.packages(c('igraph','lme4','RJSONIO','repr','lubridate','rshape'),repos='http://cran.us.r-project.org/')" > /home/$NB_USER/install.R 
-#RUN R CMD BATCH --no-save /home/$NB_USER/install.R
+#RUN echo "install.packages(c('RCurl','ggplot2','XML','tm'),repos='http://cran.us.r-project.org/')" > /home/$NB_USER/install.R \
+#    && R CMD BATCH --no-save /home/$NB_USER/install.R
 
 
 RUN echo "install.packages(c('IRdisplay', 'devtools'),repos='http://cran.us.r-project.org/')" > /home/$NB_USER/install.R \
@@ -43,6 +40,10 @@ RUN echo "install.packages(c('IRdisplay', 'devtools'),repos='http://cran.us.r-pr
     && echo "IRkernel::installspec()" >> /home/$NB_USER/install.R  \
     && R CMD BATCH --no-save /home/$NB_USER/install.R
 
+RUN git clone https://github.com/johnmyleswhite/ML_for_Hackers.git \
+    && echo "source('/home/$NB_USER/ML_for_Hackers/package_installer.R')" > /home/$NB_USER/install.R \
+    && R CMD BATCH --no-save /home/$NB_USER/install.R
+    
 RUN rm -f /home/$NB_USER/install.R*
-
+    
 CMD ['jupyter-notebook', '--ip=0.0.0.0']
