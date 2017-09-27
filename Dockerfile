@@ -14,6 +14,7 @@ RUN apt-get -y update &&   \
     r-base                 \
     r-base-dev             \
     r-recommended          \
+    r-cran-slam            \
     libcurl4-openssl-dev   
     
 USER $NB_USER
