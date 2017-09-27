@@ -42,8 +42,6 @@ RUN echo 'install.packages(c("RCurl",     \
                              "plyr",      \
                              "lme4",      \
                              "glmnet",    \
-                             "Hmisc",     \
-                             "lubridate", \
                              "devtools"), \
                              repos="https://cloud.r-project.org/", \
                              dependencies = TRUE, type = "source")' > /home/$NB_USER/install.R \
