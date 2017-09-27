@@ -30,16 +30,18 @@ ENV R_LIBS_USER /home/$NB_USER/rlib
 
 RUN mkdir -p /home/$NB_USER/rlib
 
-RUN echo 'install.packages(c("RCurl",
-                             "ggplot2",
-                             "XML",
-                             "tm",
-                             "IRdisplay",
-                             "e1071",
-                             "reshape",
-                             "RJSONIO",
-                             "scales",
-                             "devtools"),repos="https://cloud.r-project.org/",dependencies = TRUE, type = "source")' > /home/$NB_USER/install.R \
+RUN echo 'install.packages(c("RCurl",     \
+                             "ggplot2",   \
+                             "XML",       \
+                             "tm",        \
+                             "IRdisplay", \
+                             "e1071",     \
+                             "reshape",   \
+                             "RJSONIO",   \
+                             "scales",    \
+                             "devtools"), \
+                             repos="https://cloud.r-project.org/", \
+                             dependencies = TRUE, type = "source")' > /home/$NB_USER/install.R \
     && echo "devtools::install_github('IRkernel/IRkernel')" >> /home/$NB_USER/install.R  \
     && echo "IRkernel::installspec()" >> /home/$NB_USER/install.R  \
     && R CMD BATCH --no-save /home/$NB_USER/install.R
