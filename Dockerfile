@@ -43,7 +43,6 @@ RUN echo 'install.packages(c("RCurl",     \
                              "lme4",      \
                              "glmnet",    \
                              "Hmisc",     \
-                             "igraph",    \
                              "lubridate", \
                              "devtools"), \
                              repos="https://cloud.r-project.org/", \
