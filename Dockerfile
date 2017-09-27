@@ -38,10 +38,6 @@ RUN echo 'install.packages(c("RCurl",     \
                              "e1071",     \
                              "reshape",   \
                              "RJSONIO",   \
-                             "scales",    \
-                             "plyr",      \
-                             "lme4",      \
-                             "glmnet",    \
                              "devtools"), \
                              repos="https://cloud.r-project.org/", \
                              dependencies = TRUE, type = "source")' > /home/$NB_USER/install.R \
