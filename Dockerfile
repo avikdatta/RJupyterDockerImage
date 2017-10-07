@@ -15,6 +15,8 @@ RUN apt-get -y update &&   \
     r-base-dev             \
     r-recommended          \
     r-cran-slam            \
+    libnlopt-dev           \
+    r-cran-nloptr          \
     libcurl4-openssl-dev   
     
 USER $NB_USER
