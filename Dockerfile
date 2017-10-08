@@ -58,4 +58,4 @@ RUN rm -rf /home/$NB_USER/install.R* \
            /home/$NB_USER/ML_for_Hackers/package_installer.R* 
            
 EXPOSE 8889    
-CMD ['jupyter-notebook', '--ip','0.0.0.0', '--port','8.8.8.9']
+CMD ['jupyter-notebook', '--ip=0.0.0.0', '--port=8889', '--no-browser']
