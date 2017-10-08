@@ -19,7 +19,8 @@ RUN apt-get -y update &&   \
     r-cran-nloptr          \
     libcurl4-openssl-dev   \
     libxml2-dev            \
-    r-cran-xml
+    r-cran-xml             \
+&&  apt-get purge -y --auto-remove
     
 USER $NB_USER
 WORKDIR /home/$NB_USER
@@ -53,8 +54,8 @@ RUN git clone https://github.com/johnmyleswhite/ML_for_Hackers.git \
     && sed -i 's|http://cran.stat.auckland.ac.nz/|https://cloud.r-project.org/|g' /home/$NB_USER/ML_for_Hackers/package_installer.R \
     && R CMD BATCH --no-save /home/$NB_USER/ML_for_Hackers/package_installer.R
 
-#RUN rm -rf /home/$NB_USER/install.R* \
-#           /home/$NB_USER/ML_for_Hackers/package_installer.R* \
-#           /home/$NB_USER/ML_for_Hackers
-    
-CMD ['jupyter-notebook', '--ip=0.0.0.0']
+RUN rm -rf /home/$NB_USER/install.R* \
+           /home/$NB_USER/ML_for_Hackers/package_installer.R* 
+           
+EXPOSE 8889    
+CMD ['jupyter-notebook', '--ip','0.0.0.0', '--port','8.8.8.9']
