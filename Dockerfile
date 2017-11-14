@@ -9,6 +9,8 @@ ENV NB_USER vmuser
 USER root
 WORKDIR /root/
 
+RUN mkdir -p /home/$NB_USER/tmp
+
 RUN apt-get -y update &&   \
     apt-get install -y     \
     r-base                 \
@@ -20,7 +22,9 @@ RUN apt-get -y update &&   \
     libcurl4-openssl-dev   \
     libxml2-dev            \
     r-cran-xml             \
-&&  apt-get purge -y --auto-remove
+   &&  apt-get purge -y --auto-remove \
+   &&  apt-get clean \
+   &&  rm -rf /var/lib/apt/lists/*
     
 USER $NB_USER
 WORKDIR /home/$NB_USER
@@ -56,6 +60,9 @@ RUN git clone https://github.com/johnmyleswhite/ML_for_Hackers.git \
 
 RUN rm -rf /home/$NB_USER/install.R* \
            /home/$NB_USER/ML_for_Hackers/package_installer.R* 
-           
+
+RUN rm -rf /home/$NB_USER/.cache \
+    && rm -rf /home/$NB_USER/tmp
+    
 EXPOSE 8889    
-CMD ['jupyter-notebook', '--ip=0.0.0.0', '--port=8889', '--no-browser']
+CMD ['jupyter', 'notebook', '--ip=0.0.0.0', '--port=8889', '--no-browser']
