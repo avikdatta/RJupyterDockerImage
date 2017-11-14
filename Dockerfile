@@ -6,11 +6,12 @@ ENTRYPOINT []
 
 ENV NB_USER vmuser
 
-USER root
-WORKDIR /root/
-
+USER $NB_USER
 RUN mkdir -p /home/$NB_USER/tmp \
     && chmod a+w /home/$NB_USER/tmp
+    
+USER root
+WORKDIR /root/
 
 RUN apt-get -y update &&   \
     apt-get install -y     \
