@@ -9,7 +9,8 @@ ENV NB_USER vmuser
 USER root
 WORKDIR /root/
 
-RUN mkdir -p /home/$NB_USER/tmp
+RUN mkdir -p /home/$NB_USER/tmp \
+    && chmod a+w /home/$NB_USER/tmp
 
 RUN apt-get -y update &&   \
     apt-get install -y     \
