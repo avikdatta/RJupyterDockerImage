@@ -14,7 +14,7 @@ USER root
 WORKDIR /root/
 
 RUN apt-get -y update &&   \
-    apt-get install -y     \
+    apt-get install --no-install-recommends -y     \
     r-base                 \
     r-base-dev             \
     r-recommended          \
